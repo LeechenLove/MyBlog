@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'h7)41f=uzf7wqtb(wrc80qo8y@vsz@pg6t9rggxe^tni3u1f$r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '47.104.1.188']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '47.104.1.188', '.leechenlove.com']
 
 
 # Application definition
