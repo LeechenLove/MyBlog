@@ -2,7 +2,6 @@ from fabric import task
 from invoke import Responder
 from _credentials import github_username, github_password
 
-
 def _get_github_auth_responders():
     """返回Github用户密码填充器"""
     username_responder = Responder(
@@ -20,7 +19,7 @@ def deploy(c):
     supervisor_conf_path = '~/etc/'
     supervisor_program_name = 'MyBlog'
 
-    project_root_path = '~/apps/MyBlog、'
+    project_root_path = '~/apps/MyBlog/'
 
     # 停止应用
     with c.cd(supervisor_conf_path):
