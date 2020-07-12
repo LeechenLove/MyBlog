@@ -6,8 +6,8 @@ from django.views.generic import ListView, DetailView
 from django.utils.text import slugify
 
 from markdown.extensions.toc import TocExtension
-
-from .models import Post, Category, Tag, User
+from pure_pagination import PaginationMixin
+from .models import Post, Category, Tag
 
 
 # 文章详情视图类
@@ -40,7 +40,7 @@ class PostDetailView(DetailView):
 
 
 # 首页视图类
-class IndexView(ListView):
+class IndexView(PaginationMixin, ListView):
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'post_list'
