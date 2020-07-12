@@ -48,6 +48,8 @@ class Post(models.Model):
     # 文章作者
     author = models.ForeignKey(User, verbose_name='作者', on_delete=models.CASCADE)
 
+    # 记录阅读量
+    views = models.PositiveIntegerField(default=0, editable=False)
     class Meta:
         verbose_name = '文章'
         verbose_name_plural = verbose_name
@@ -74,3 +76,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])

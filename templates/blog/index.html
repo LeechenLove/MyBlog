@@ -12,9 +12,9 @@
                 <span class="post-category"><a href="{% url 'blog:category' post.category.pk %}">{{ post.category.name }}</a></span>
                 <span class="post-date"><a href="{% url 'blog:archive' post.created_time.year post.created_time.month %}"><time class="entry-date"
                                                 datetime="{{ post.created_time }}">{{ post.created_time }}</time></a></span>
-                <span class="post-author"><a href="{% url 'blog:author' post.pk %}">{{ post.author }}</a></span>
+                <span class="post-author"><a href="{% url 'blog:author' post.author_id %}">{{ post.author }}</a></span>
                 <span class="post-category"><a href="{{ post.get_absolute_url }}#comment-area">{{ post.comment_set.count }} 评论</a></span>
-                <span class="post-category"><a href="{{ post.get_absolute_url }}">588 阅读</a></span>
+                <span class="views-count"><a href="{{ post.get_absolute_url }}">{{ post.views }} 阅读</a></span>
             </div>
             <div class="entry-content clearfix">
                 <p>{{ post.excerpt }}</p>
@@ -26,4 +26,17 @@
     {% empty %}
         <div class="no-post">暂时还没发布任何文章</div>
     {% endfor %}
+
+    {% if is_paginated %}
+        <div class="pagination-simple">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">上一页</a>
+        {% endif %}
+        <span class="current">第{{ page_obj.number }} 页 / 共{{ paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">下一页</a>
+        {% endif %}
+        </div>
+    {% endif %}
+
 {% endblock main %}
