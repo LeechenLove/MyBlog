@@ -25,18 +25,18 @@ class PostDetailView(DetailView):
         self.object.increase_views()
         return response
 
-    def get_object(self, queryset=None):
-        # 覆写 get_object 方法的目的是因为需要对 post 的 body 值进行渲染
-        post = super().get_object(queryset=None)
-        md = markdown.Markdown(extensions=[
-            'markdown.extensions.extra',
-            'markdown.extensions.codehilite',
-            TocExtension(slugify=slugify),
-        ])
-        post.body = md.convert(post.body)
-        m = re.search(r'<div class="toc">\s*<ul>(.*)</ul>\s*</div>', md.toc, re.S)
-        post.toc = m.group(1) if m is not None else ''
-        return post
+    # def get_object(self, queryset=None):
+    #     # 覆写 get_object 方法的目的是因为需要对 post 的 body 值进行渲染
+    #     post = super().get_object(queryset=None)
+    #     md = markdown.Markdown(extensions=[
+    #         'markdown.extensions.extra',
+    #         'markdown.extensions.codehilite',
+    #         TocExtension(slugify=slugify),
+    #     ])
+    #     post.body = md.convert(post.body)
+    #     m = re.search(r'<div class="toc">\s*<ul>(.*)</ul>\s*</div>', md.toc, re.S)
+    #     post.toc = m.group(1) if m is not None else ''
+    #     return post
 
 
 # 首页视图类
