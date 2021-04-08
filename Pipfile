@@ -7,7 +7,7 @@ verify_ssl = true
 fabric = "*"
 
 [packages]
-django = "==2.2.13"
+django = "==2.2.20"
 markdown = "*"
 gunicorn = "*"
 faker = "*"
